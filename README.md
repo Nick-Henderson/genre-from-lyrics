@@ -91,6 +91,13 @@ Rap has by far the largest average vocabulary per song - that is, the largest nu
 
 ![](figs/repeats_per_word.png)
 
+### What words are most common in different genres?
+
+There are a lot of generic words that are popular in many songs across every genre. If I use the word counts to generate word clouds, I suspect that I will get very similiar clouds for most genres. To correct for this somewhat, I will instead use the TF-IDF data to generate word clouds. This should find words that are more unique.
+
+
+![](figs/cloud_blues.png)
+
 ## Future Directions
 
 1. Make a more modern dataset: The million songs dataset is quite dated, havihg been released in 2011. I worked with it due the the availability of lyrics and genre labels. In the future, I would like to scrape more modern data. 
