@@ -82,9 +82,14 @@ We can see that there are far more rock songs than any other genre. We will need
 
 ### Which genres have the largest vocabularies?
 
-![](figs/unique_words_per_genre.png)
+![](figs/unique_words_per_genre.png)  ![](figs/words_per_song.png)
 
-![](figs/words_per_song.png)
+Rap has by far the largest average vocabulary per song - that is, the largest number of unique words per song. We can see that rap also just has the most total words per song.
+
+
+### Which genres are most repetitive?
+
+![](figs/repeats_per_word.png)
 
 ## Future Directions
 
