@@ -95,8 +95,12 @@ Rap has by far the largest average vocabulary per song - that is, the largest nu
 
 There are a lot of generic words that are popular in many songs across every genre. If I use the word counts to generate word clouds, I suspect that I will get very similiar clouds for most genres. To correct for this somewhat, I will instead use the TF-IDF data to generate word clouds. This should find words that are more unique.
 
-
+### Blues
 ![](figs/cloud_blues.png)
+
+### Metal
+![](figs/cloud_metal.png)
+
 
 ## Future Directions
 
