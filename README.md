@@ -1,10 +1,10 @@
 # Can musical genre be predicted from just the lyrics?
 
-The goal of this project is to find out whether musical genre can be predicted from just the lyrics. 
+The goal of this project is to find out whether musical genre can be predicted from just the lyrics. Given the somewhat nebulous and subjective nature of musical genres, it is possible this is a doomed classification task. I will make the strongest model that I can, and along the way I will see what I can learn about the connection between genre and lyrics. 
 
 ### Data Sources
 
-Bag-of-Words lyrics dataset was attained from http://millionsongdataset.com/musixmatch/
+A Bag-of-Words lyrics dataset was attained from http://millionsongdataset.com/musixmatch/ . This dataset contains the counts for the top 5000 words in 200,000+ songs. 
 
 The specific file links are as follows
 
@@ -20,7 +20,7 @@ http://millionsongdataset.com/sites/default/files/AdditionalFiles/mxm_779k_match
 http://millionsongdataset.com/sites/default/files/mxm_reverse_mapping.txt
 
 
-Genres data was attained from several sources
+Genre data was attained from several sources
 
 * Allmusic genre annotations: 
 http://www.ifs.tuwien.ac.at/mir/msd/partitions/msd-MAGD-genreAssignment.cls
