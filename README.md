@@ -78,7 +78,13 @@ First lets look at the most common genres in the data.
 ![](figs/distribution.png)  
 ![](figs/genre_counts.png)            
 
-We can see that there are far more rock songs than any other label. 
+We can see that there are far more rock songs than any other genre. We will need to account for this feature of the dataset during the modeling section. 
+
+### Which genres have the largest vocabularies?
+
+![](figs/unique_words_per_genre.png)
+
+![](figs/words_per_song.png)
 
 ## Future Directions
 
