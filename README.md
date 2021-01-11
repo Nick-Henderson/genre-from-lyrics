@@ -73,5 +73,13 @@ Now we have 3 datasets to work with for our EDA and modeling.
 
 ## Exploratory Data Analysis
 
+First lets look at the most common genres in the data. 
+
 ![](figs/distribution.png)  
 ![](figs/genre_counts.png)            
+
+We can see that there are far more rock songs than any other label. 
+
+## Future Directions
+
+1. Make a more modern dataset: The million songs dataset is quite dated, havihg been released in 2011. I worked with it due the the availability of lyrics and genre labels. In the future, I would like to scrape more modern data. 
