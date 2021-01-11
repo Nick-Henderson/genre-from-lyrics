@@ -73,4 +73,4 @@ Now we have 3 datasets to work with for our EDA and modeling.
 
 ## Exploratory Data Analysis
 
-![](figs/genre_counts.png)
+![](figs/genre_counts.png)        ![](figs/distribution.png)
