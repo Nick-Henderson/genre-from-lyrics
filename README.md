@@ -69,7 +69,7 @@ Now we have 3 datasets to work with for our EDA and modeling.
 
 2) TF-IDF - DataFrame with TF-IDF score for the top 1382 words
 
-3) Raw Lyrics - Dataframe with the lyrics as a string
+3) Raw Lyrics - Dataframe with the lyrics as a string 
 
 ## Exploratory Data Analysis
 
