@@ -101,6 +101,12 @@ There are a lot of generic words that are popular in many songs across every gen
 ### Metal
 ![](figs/cloud_metal.png)
 
+### Electronic
+![](figs/cloud_electronic.png)
+
+### Reggae
+![](figs/cloud_reggae.png)
+
 
 ## Future Directions
 
