@@ -78,13 +78,13 @@ First lets look at the most common genres in the data.
 ![](figs/distribution.png)  
 ![](figs/genre_counts.png)            
 
-We can see that there are far more rock songs than any other genre. We will need to account for this feature of the dataset during the modeling section. 
+We can see that there are far more rock songs than any other genre. We will need to account for this feature of the dataset during the modeling section. We can also see that New Age has very few songs. To avoid complications, I have dropped all New Age songs from the dataset.
 
 ### Which genres have the largest vocabularies?
 
 ![](figs/unique_words_per_genre.png)  ![](figs/words_per_song.png)
 
-Rap has by far the largest average vocabulary per song - that is, the largest number of unique words per song. We can see that rap also just has the most total words per song.
+Rap has by far the largest average vocabulary per song - that is, the largest number of unique words per song. We can see that rap also has the most total words per song, but not by as large of a margin.
 
 
 ### Which genres are most repetitive?
@@ -127,6 +127,8 @@ We have very unbalanced clases, so perhaps a more fair baseline model is to just
 
 ### Random Forest:
 
+
+
 #### Accuracy Score: 0.54
 
 The random forest model shows only a 7% improvement over the baseline model. This may indicate that the model is not well optimized, but I would argue that it more likely indicates that this is an especially challenging classification task. Lets take a look at some more details for one of the folds:
@@ -137,9 +139,44 @@ Notice that in most cases the model struggles much more with recall than precisi
 
 ### LSTM
 
+LSTM models differ from the above models in that they take into account the sequence of words. That is, they account for long and short-term dependencies within the data. For natural language processing this helps to capture features that would otherwise be missed. For our purposes, this might make a better classifier. For example, the same words might be common in one order in country songs, and in an entirely different order in pop songs. 
 
+All processing of the data in preparation for LSTM can be found in the LSTM section of the notebook (**Genre_from_lyrics_notebook.ipynb**)
+
+#### Cross Validation Accuracy Score: 0.56
+
+The LSTM model performs just slightly better than the Random forest model. Again, I suspect that this is simply a difficult classification task given the nature of music genres. 
+
+How did the LSTM model evolve over the epochs of training?
+
+![](figs/lstm_loss.png)  ![](figs/lstm_accuracy.png)
+
+We can see that the training accuracy continues increasing past the fourth epoch, but the test accuracy has already leveled off. Loss shows the same pattern. It appears that it only takes a few epochs to start overfitting our data. I am only showing a few epochs here, but upon running the model for 10 epochs, this pattern continued. The train accuracy got much higher (near 80%), but the test accuracy never improved past 55-56%. This suggests that the LSTM very quickly overfits data. It also suggests that, as I suspected, lyrics/genres are not very generalizable. Fitting very well to training data does not help make accurate predictions on unseen data. 
+
+With the LSTM model as our final model, we can predict the genres for our validation data.
+
+## Final Accuracy Score: 0.56
+
+![](figs/lstm_class_report.png)
+
+Compared to the random forest, this model is somewhat more balanced between precision and recall. Where there random forest was too likely to label songs as rock (98% recall, 52% precision), this model is a little less biased towards the majority class. Whether or not this is truly *better* is somewhat subjective. 
+
+
+## Conclusions
+
+This project has illustrated that not all classification tasks are created equally. In some classification tasks the labels are objective truth, and there is a direct connection between the label and the content. In the case of lyrics and genre, there are two clear disconnections - 1) the labels are subjective. No matter how high quality the genre labels are, they are still ultimately chosen based on the opinion of someone, somewhere. 2) There is not necessarily a direct connection between the label and the content. A country song can be about trucks and whiskey, but a country song can also be about love, or loss, or politics. This makes for a classification task that is never likely to be very accurate. 
+
+This project has also illustrated the trade off between precision and recall. The random forest model was more precise for most genres, meaning it was unlikely to label something as country, metal, rap, etc. unless it truly belonged to those genres. This lead to worse recall - many songs were, by default, lumped in with rock, when they really belonged to other categories. The LSTM model improved recall slightly, at the expense of worse precision for most genres. 
+
+Finally, we can conclude that some genres are more lyrically unique than others. Both models were much more successful labeling genres like rap and metal than they were labeling genres like pop/electronic/folk/blues. 
 
 
 ## Future Directions
 
 1. Make a more modern dataset: The million songs dataset is quite dated, havihg been released in 2011. I worked with it due the the availability of lyrics and genre labels. In the future, I would like to scrape more modern data. 
+
+2. Forget genres: Instead of attempting to use supervised learning to correctly classify lyrics into the correct genre, it might be more interesting to use unsupervised learning (e.g. LDA) to create topic labels. For example, it would be great to have a tool that easily let me find a song about love/sadness/etc.. 
+
+3. Nearest neighbors: similar to the point above, it would be interesting to build a recommender that will return songs that are lyrically similar to an input song. 
+
+4. Use music *and* lyrics: Make a model that uses both the features in the music and the features in the lyrics to classify genres. Would the lyrics help at all? or would the music tell the whole story?
