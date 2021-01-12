@@ -107,6 +107,38 @@ There are a lot of generic words that are popular in many songs across every gen
 ### Reggae
 ![](figs/cloud_reggae.png)
 
+We can see that these four genres are fairly distinct. Metal looks almost exactly how I think most would have guessed, and reggae has words like 'dem' that are not represented elsewhere. The top words for punk and rap are also fairly unique, but are a little NSFW so they aren't on display here. Conversely, the top words for rock, folk, pop and country (not shown) are much less unique. Of course, machine learning ought to be much better than my naked eye at picking up differences between these genres. 
+
+
+## Modeling
+
+Based on our EDA, it is unclear what we should expect from the accuracy our model. It seems quite possible that some genres will be very hard to distinguish, while others like rap, metal, and reggae, might be predicted more accurately. To evaluate models, I will be using accuracy score. For a simple, fairly low stakes classification problem like this one, a simple accuracy score seems like the best way to capture what we care about - whether the model predicted the correct genre. Models will be evaluated with 6 fold cross validation using 'StratifiedKFold' to maintain class proportions in each fold. 
+
+### Baseline models:
+
+For our baseline model, we can start by randomly assigning a class with a probability determined by class distribution - that is, we will be much more likely to assign 'Rock' (the most common genre) than blues (the least common genre). 
+
+#### Accuracy Score: 0.25
+
+We have very unbalanced clases, so perhaps a more fair baseline model is to just select the majority class for every prediction. 
+
+#### Accuracy Score: 0.47
+
+
+### Random Forest:
+
+#### Accuracy Score: 0.54
+
+The random forest model shows only a 7% improvement over the baseline model. This may indicate that the model is not well optimized, but I would argue that it more likely indicates that this is an especially challenging classification task. Lets take a look at some more details for one of the folds:
+
+![](figs/rf_class_report.png)  ![](figs/rf_feature_importance.png)
+
+Notice that in most cases the model struggles much more with recall than precision, except for Rock (the majority class) where it has very high recall but worse precision. This suggests that the model more or less defaults to Rock when it cannot 'confidently' label something as another genre, so it ends up labeling too many songs as Rock, and too few as the other genres. This is not actually that bad of a result (in my opinion). Functionally, it is somewhat useful to have a default class, and to only classify something as say, Blues when it is very 'Bluesy', Country when it is very Country, and Metal when it is very 'Metally'. That said, before settling for this sub-optimal classification, lets see if we can get stronger performance with a deep learning LSTM model. 
+
+### LSTM
+
+
+
 
 ## Future Directions
 
